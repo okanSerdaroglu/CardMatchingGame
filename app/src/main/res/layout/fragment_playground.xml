@@ -38,13 +38,25 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewImages"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="@dimen/margin_match_constraint"
         android:layout_height="@dimen/margin_match_constraint"
+        android:background="@color/color_green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/constraintLayoutHeader" />
+        app:layout_constraintTop_toBottomOf="@id/constraintLayoutHeader">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewImages"
+            android:layout_width="@dimen/margin_match_constraint"
+            android:layout_height="wrap_content"
+            android:background="color/green"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
