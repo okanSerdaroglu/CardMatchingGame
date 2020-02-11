@@ -4,4 +4,7 @@
     <string name="password">Password</string>
     <string name="register">Register</string>
     <string name="image_view_person">image_view_person</string>
+    <string name="dummy_string_score">Score : 0 HighScore : 0</string>
+    <string name="play">PLAY</string>
+    <string name="leaders">LEADERS</string>
 </resources>
