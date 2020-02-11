@@ -9,4 +9,5 @@
     <string name="leaders">LEADERS</string>
     <string name="leaders_small">Leaders</string>
     <string name="imageView_back">imageView Back</string>
+    <string name="score">score</string>
 </resources>

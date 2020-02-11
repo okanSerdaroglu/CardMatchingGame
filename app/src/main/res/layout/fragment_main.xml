@@ -20,7 +20,7 @@
             android:layout_marginBottom="@dimen/margin_50"
             android:background="@drawable/circle"
             android:contentDescription="@string/image_view_person"
-            android:src="@drawable/ic_person_black"
+            android:src="@drawable/ic_person"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
