@@ -10,4 +10,6 @@
     <string name="leaders_small">Leaders</string>
     <string name="imageView_back">imageView Back</string>
     <string name="score">score</string>
+    <string name="dummy_time">Time : 03:00</string>
+    <string name="dummy_score">Score : 0</string>
 </resources>
