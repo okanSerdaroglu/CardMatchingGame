@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CardMatchingGame</string>
+    <string name="nickname">NickName</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="image_view_person">image_view_person</string>
 </resources>
