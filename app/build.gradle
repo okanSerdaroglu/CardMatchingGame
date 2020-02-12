@@ -20,6 +20,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    dataBinding {
+        enabled = true
+    }
+
 }
 
 dependencies {
@@ -37,6 +42,7 @@ dependencies {
     // Navigation Fragment
     implementation "androidx.navigation:navigation-fragment:2.2.1"
     implementation "androidx.navigation:navigation-ui:2.2.1"
+
 
 
 }
