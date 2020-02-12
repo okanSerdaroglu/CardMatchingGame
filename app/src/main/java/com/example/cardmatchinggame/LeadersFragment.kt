@@ -1,15 +1,18 @@
 package com.example.cardmatchinggame
 
-
-import android.os.Bundle
-import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.example.cardmatchinggame.base.BaseFragment
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.cardmatchinggame.databinding.FragmentLeadersBinding
 
-class LeadersFragment : BaseFragment (){
+class LeadersFragment : BaseFragment<FragmentLeadersBinding>() {
+    lateinit var binding: FragmentLeadersBinding
 
+    override fun onBind(binding: ViewDataBinding) {
+        this.binding = binding as FragmentLeadersBinding
+    }
 
-
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_leaders
+    }
 
 }
