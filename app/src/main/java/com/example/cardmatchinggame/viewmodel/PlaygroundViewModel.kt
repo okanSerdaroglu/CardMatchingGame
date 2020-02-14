@@ -3,12 +3,17 @@ package com.example.cardmatchinggame.viewmodel
 import android.os.CountDownTimer
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.cardmatchinggame.R
 import com.example.cardmatchinggame.model.Box
 import com.example.cardmatchinggame.model.Level
 
 class PlaygroundViewModel : ViewModel() {
 
-    init { prepareLevelList() }
+    init {
+        val imageList : ArrayList<Int> = prepareImageList()
+        prepareLevelList(imageList)
+    }
+
 
     var totalTime: MutableLiveData<Long> = MutableLiveData(20000)
     var isTimeFinished : MutableLiveData<Boolean> = MutableLiveData(false)
@@ -36,14 +41,30 @@ class PlaygroundViewModel : ViewModel() {
 
     }
 
-    private fun prepareLevelList () : ArrayList<Level>{
+    private fun prepareImageList () : ArrayList<Int>{
+        val imageList = arrayListOf<Int>()
+        imageList.add(R.drawable.ic_bullseye_arrow)
+        imageList.add(R.drawable.ic_duck)
+        imageList.add(R.drawable.ic_emoticon_cool_outline)
+        imageList.add(R.drawable.ic_gift)
+        imageList.add(R.drawable.ic_mushroom)
+        imageList.add(R.drawable.ic_music)
+        imageList.add(R.drawable.ic_person)
+        imageList.add(R.drawable.ic_pine_tree)
+        imageList.add(R.drawable.ic_sail_boat)
+        imageList.add(R.drawable.ic_trophy_variant)
+        imageList.add(R.drawable.ic_volleyball)
+        imageList.add(R.drawable.ic_white_balance_sunny)
+        return imageList.shuffled() as ArrayList<Int>
+    }
+
+    private fun prepareLevelList (imageList : ArrayList<Int>) : ArrayList<Level>{
 
         val levelList = ArrayList<Level>()
         for (j in 1..4){
             val boxList = ArrayList<Box>()
             for (i in 0 until getBoxNumberOfLevel(j)) {
-                 val box = Box(i)
-                 // random resim alan metod
+                 val box = Box(i, imageList[i])
                  boxList.add(box)
             }
             boxList.addAll(boxList)
