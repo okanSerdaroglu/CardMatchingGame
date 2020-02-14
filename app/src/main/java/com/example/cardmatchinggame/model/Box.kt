@@ -1,3 +1,3 @@
 package com.example.cardmatchinggame.model
 
-data class Box (private val id : String)
+data class Box (private val id : Int)

@@ -1,3 +1,5 @@
 package com.example.cardmatchinggame.model
 
-class Level (private val levelID : Int, private val box: Box)
+data class Level (private val levelID : Int, private val boxList : ArrayList<Box>)
+
+
