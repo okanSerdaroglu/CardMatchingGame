@@ -61,6 +61,7 @@
                 android:id="@+id/recyclerViewImages"
                 android:layout_width="@dimen/margin_match_constraint"
                 android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
