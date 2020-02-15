@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "994762657759",
+    "firebase_url": "https://cardmatchinggame.firebaseio.com",
+    "project_id": "cardmatchinggame",
+    "storage_bucket": "cardmatchinggame.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:994762657759:android:389b1c00ab64d88173fe6a",
+        "android_client_info": {
+          "package_name": "com.example.cardmatchinggame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "994762657759-d2og36b1ossdmsjitqbe8oqelbu1g39u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cardmatchinggame",
+            "certificate_hash": "e8c44c39f1ef8d1ded03e33219d79a55c7624aca"
+          }
+        },
+        {
+          "client_id": "994762657759-rl7444pd96fr25fh952on0qfmi27a8g7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-3CIMA-5MlLwyY7PJ0wVdir3DawbmJH4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "994762657759-rl7444pd96fr25fh952on0qfmi27a8g7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
