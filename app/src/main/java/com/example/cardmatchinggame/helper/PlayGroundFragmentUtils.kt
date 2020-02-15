@@ -2,13 +2,14 @@ package com.example.cardmatchinggame.helper
 
 import com.example.cardmatchinggame.R
 import com.example.cardmatchinggame.adapter.ImageListAdapter
+import com.example.cardmatchinggame.helper.interfaces.IBoxSelected
 import com.example.cardmatchinggame.model.Box
 import com.example.cardmatchinggame.model.Level
 import com.example.cardmatchinggame.viewmodel.ItemImageViewModel
 import com.example.cardmatchinggame.viewmodel.PlaygroundViewModel
 
 
-class PlayGroundFragmentUtils {
+class PlayGroundFragmentUtils : IBoxSelected {
 
     companion object {
         fun getPlayGroundViewModel(viewModel : PlaygroundViewModel, levelID: Int) {
@@ -16,9 +17,7 @@ class PlayGroundFragmentUtils {
         }
 
         private fun getImageListAdapter(levelID: Int): ImageListAdapter {
-
             return ImageListAdapter(getItemViewModelList(levelID))
-
         }
 
         private fun getItemViewModelList(levelID: Int): ArrayList<ItemImageViewModel> {
@@ -26,8 +25,8 @@ class PlayGroundFragmentUtils {
             val imageList = prepareImageList()
             val itemImageViewModelList = ArrayList<ItemImageViewModel>()
             val level = prepareLevelList(imageList)[levelID]
-            for (box in level.boxList) {
-                itemImageViewModelList.add(ItemImageViewModel(box))
+            for ((position, box) in level.boxList.withIndex()) {
+                itemImageViewModelList.add(ItemImageViewModel(box,position))
             }
 
             return itemImageViewModelList
@@ -96,6 +95,10 @@ class PlayGroundFragmentUtils {
             }
 
         }
+
+    }
+
+    override fun onBoxSelected(itemImageViewModel: ItemImageViewModel) {
 
     }
 

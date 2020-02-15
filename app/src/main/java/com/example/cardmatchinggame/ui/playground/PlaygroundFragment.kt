@@ -17,11 +17,19 @@ class PlaygroundFragment : BaseFragment<FragmentPlaygroundBinding>() {
     override fun onBind(binding : ViewDataBinding) {
         this.binding = binding as FragmentPlaygroundBinding
         playgroundViewModel = ViewModelProvider(this)[PlaygroundViewModel::class.java]
-        PlayGroundFragmentUtils.getPlayGroundViewModel(playgroundViewModel, 0)
+        PlayGroundFragmentUtils.getPlayGroundViewModel(playgroundViewModel, 3)
         binding.lifecycleOwner = this
         binding.playgroundViewModel = playgroundViewModel
-        playgroundViewModel.startTimer()
+        //playgroundViewModel.startTimer()
         observeViewModel()
+        observeBoxSelected()
+    }
+
+    private fun observeBoxSelected() {
+        playgroundViewModel.secondSelectedBox.observe(this, Observer {
+
+
+        })
     }
 
     private fun observeViewModel() {
@@ -39,4 +47,6 @@ class PlaygroundFragment : BaseFragment<FragmentPlaygroundBinding>() {
     override fun getLayoutId(): Int {
         return R.layout.fragment_playground
     }
+
+
 }

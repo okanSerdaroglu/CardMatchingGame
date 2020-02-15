@@ -1,7 +1,7 @@
 package com.example.cardmatchinggame.helper.interfaces
 
-import com.example.cardmatchinggame.model.Box
+import com.example.cardmatchinggame.viewmodel.ItemImageViewModel
 
 interface IBoxSelected {
-    fun onBoxSelected (box: Box)
+    fun onBoxSelected (itemImageViewModel: ItemImageViewModel)
 }

@@ -4,13 +4,15 @@ import android.os.CountDownTimer
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cardmatchinggame.adapter.ImageListAdapter
+import com.example.cardmatchinggame.helper.interfaces.IBoxSelected
 
 class PlaygroundViewModel : ViewModel() {
     lateinit var imageListAdapter : ImageListAdapter
-
     var totalTime: MutableLiveData<Long> = MutableLiveData(20000)
     var isTimeFinished : MutableLiveData<Boolean> = MutableLiveData(false)
     var isLevelSuccess : MutableLiveData<Boolean> = MutableLiveData(false)
+    var firstSelectedBox : MutableLiveData<ItemImageViewModel> = MutableLiveData()
+    var secondSelectedBox : MutableLiveData<ItemImageViewModel> = MutableLiveData()
     var countDownInterval:Long = 1000
 
 
@@ -29,5 +31,4 @@ class PlaygroundViewModel : ViewModel() {
         }
         timer.start()
     }
-
 }
