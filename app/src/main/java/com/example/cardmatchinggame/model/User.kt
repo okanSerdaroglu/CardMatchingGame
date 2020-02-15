@@ -1,6 +1,6 @@
 package com.example.cardmatchinggame.model
 
 data class User (
-    var nickName: String,
+    var nickname: String,
     var password: String
 )
