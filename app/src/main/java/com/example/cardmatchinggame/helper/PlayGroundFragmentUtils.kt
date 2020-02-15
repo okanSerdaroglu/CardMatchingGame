@@ -1,5 +1,7 @@
 package com.example.cardmatchinggame.helper
 
+import android.os.Handler
+import android.util.Log
 import com.example.cardmatchinggame.R
 import com.example.cardmatchinggame.adapter.ImageListAdapter
 import com.example.cardmatchinggame.helper.interfaces.IBoxSelected
@@ -9,11 +11,43 @@ import com.example.cardmatchinggame.viewmodel.ItemImageViewModel
 import com.example.cardmatchinggame.viewmodel.PlaygroundViewModel
 
 
-class PlayGroundFragmentUtils : IBoxSelected {
+class PlayGroundFragmentUtils {
 
     companion object {
         fun getPlayGroundViewModel(viewModel : PlaygroundViewModel, levelID: Int) {
             viewModel.imageListAdapter = getImageListAdapter(levelID)
+            viewModel.stepCount.value = viewModel.imageListAdapter.itemCount / 2
+            viewModel.imageListAdapter.iBoxSelected = object : IBoxSelected {
+                override fun onBoxSelected(itemImageViewModel: ItemImageViewModel) {
+                    checkSelectedBox(viewModel.imageListAdapter, viewModel, itemImageViewModel)
+                }
+            }
+        }
+
+        private fun checkSelectedBox(adapter : ImageListAdapter, viewModel: PlaygroundViewModel, selectedBox: ItemImageViewModel) {
+            Log.d("position", selectedBox.position.toString())
+            /*adapter.notifyItemChanged(selectedBox.position) // seçileni update
+            if (viewModel.selectedBox.value == null) {
+                // ilk seçim
+                viewModel.selectedBox.value = selectedBox
+            } else {
+                if ((viewModel.selectedBox.value)!!.box.id == selectedBox.box.id) {
+                    // başarılı - sadece son seçileni update et ilk seçileni null yap
+                    viewModel.selectedBox.value = null
+                    viewModel.stepCount.value!!.minus(1)
+                } else {
+                    // başarısız
+                    //Thread.sleep(3000)
+
+                    // önce turn leri false yap ikisininde
+                    (viewModel.selectedBox.value)!!.isBoxTurned.value = false // öncekini ters çevir
+                    selectedBox.isBoxTurned.value = false // yeni seçileni ters çevirdim
+
+                    adapter.notifyItemChanged(viewModel.selectedBox.value!!.position)
+                    adapter.notifyItemChanged(selectedBox.position)
+
+                }
+            }*/
         }
 
         private fun getImageListAdapter(levelID: Int): ImageListAdapter {
@@ -97,9 +131,4 @@ class PlayGroundFragmentUtils : IBoxSelected {
         }
 
     }
-
-    override fun onBoxSelected(itemImageViewModel: ItemImageViewModel) {
-
-    }
-
 }

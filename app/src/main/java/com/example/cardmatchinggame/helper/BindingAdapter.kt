@@ -4,15 +4,18 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cardmatchinggame.R
-import com.example.cardmatchinggame.model.Box
 import com.example.cardmatchinggame.viewmodel.ItemImageViewModel
 
 class BindingAdapter {
     companion object {
         @JvmStatic
         @BindingAdapter("setImageBackground")
-        fun setImageBackground(imageView: ImageView, resource: Int) {
-            imageView.setImageResource(resource)
+        fun setImageBackground(imageView: ImageView, itemImageViewModel: ItemImageViewModel) {
+            if (itemImageViewModel.isBoxTurned.value!!) {
+                imageView.setImageResource(itemImageViewModel.box.image)
+            } else {
+                imageView.setImageResource(R.drawable.ic_person)
+            }
         }
 
         @JvmStatic

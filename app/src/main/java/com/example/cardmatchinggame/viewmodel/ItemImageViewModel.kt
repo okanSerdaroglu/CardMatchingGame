@@ -11,11 +11,7 @@ class ItemImageViewModel(var box : Box,var position : Int) : ViewModel() {
 
     fun changeState() {
         isBoxTurned.value = isBoxTurned.value != true
-
-    }
-
-    fun setListener (iBoxSelected: IBoxSelected){
-        this.iBoxSelected = iBoxSelected
+        iBoxSelected.onBoxSelected(this)
     }
 
     var isBoxTurned : MutableLiveData<Boolean> = MutableLiveData(false)

@@ -1,5 +1,6 @@
 package com.example.cardmatchinggame.ui.playground
 
+import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -22,13 +23,14 @@ class PlaygroundFragment : BaseFragment<FragmentPlaygroundBinding>() {
         binding.playgroundViewModel = playgroundViewModel
         //playgroundViewModel.startTimer()
         observeViewModel()
-        observeBoxSelected()
+        observePlayFinished()
     }
 
-    private fun observeBoxSelected() {
-        playgroundViewModel.secondSelectedBox.observe(this, Observer {
-
-
+    private fun observePlayFinished() {
+        playgroundViewModel.stepCount.observe(this, Observer {
+            if (playgroundViewModel.stepCount.value == 0) {
+                Toast.makeText(context, "Bitti", Toast.LENGTH_LONG).show()
+            }
         })
     }
 
