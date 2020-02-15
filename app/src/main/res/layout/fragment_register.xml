@@ -67,6 +67,7 @@
                 android:layout_marginBottom="@dimen/margin_16"
                 android:text="@string/register"
                 android:textColor="@color/color_white"
+                android:onClick="@{registerViewModel::onClick}"
                 android:textSize="@dimen/text_size_21"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/editTextPassword"
