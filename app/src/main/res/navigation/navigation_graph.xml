@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation_graph.xml"
-    app:startDestination="@id/playgroundFragment">
+    app:startDestination="@id/registerFragment">
     <fragment
-        android:id="@+id/playgroundFragment"
-        android:name="com.example.cardmatchinggame.ui.playground.PlaygroundFragment"
-        android:label="PlaygroundFragment" />
+        android:id="@+id/registerFragment"
+        android:name="com.example.cardmatchinggame.ui.register.RegisterFragment"
+        android:label="RegisterFragment" />
 </navigation>
