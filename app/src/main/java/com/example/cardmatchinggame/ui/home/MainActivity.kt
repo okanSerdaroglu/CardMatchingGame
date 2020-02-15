@@ -1,7 +1,8 @@
-package com.example.cardmatchinggame
+package com.example.cardmatchinggame.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.cardmatchinggame.R
 
 class MainActivity : AppCompatActivity() {
 

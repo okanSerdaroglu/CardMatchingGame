@@ -1,4 +1,4 @@
-package com.example.cardmatchinggame
+package com.example.cardmatchinggame.helper.interfaces
 
 import com.example.cardmatchinggame.model.Box
 

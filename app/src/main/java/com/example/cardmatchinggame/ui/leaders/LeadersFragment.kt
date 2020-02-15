@@ -1,6 +1,7 @@
-package com.example.cardmatchinggame
+package com.example.cardmatchinggame.ui.leaders
 
 import androidx.databinding.ViewDataBinding
+import com.example.cardmatchinggame.R
 import com.example.cardmatchinggame.base.BaseFragment
 import com.example.cardmatchinggame.databinding.FragmentLeadersBinding
 

@@ -4,6 +4,6 @@
     app:startDestination="@id/playgroundFragment">
     <fragment
         android:id="@+id/playgroundFragment"
-        android:name="com.example.cardmatchinggame.PlaygroundFragment"
+        android:name="com.example.cardmatchinggame.ui.playground.PlaygroundFragment"
         android:label="PlaygroundFragment" />
 </navigation>

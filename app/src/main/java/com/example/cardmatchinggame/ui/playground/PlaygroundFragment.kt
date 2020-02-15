@@ -1,8 +1,9 @@
-package com.example.cardmatchinggame
+package com.example.cardmatchinggame.ui.playground
 
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.cardmatchinggame.R
 import com.example.cardmatchinggame.base.BaseFragment
 import com.example.cardmatchinggame.databinding.FragmentPlaygroundBinding
 import com.example.cardmatchinggame.helper.PlayGroundFragmentUtils
