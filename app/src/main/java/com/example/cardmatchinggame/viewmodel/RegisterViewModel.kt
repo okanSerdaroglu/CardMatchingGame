@@ -5,6 +5,7 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cardmatchinggame.model.User
+import com.example.cardmatchinggame.ui.register.RegisterFragment
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -17,6 +18,7 @@ class RegisterViewModel : ViewModel() {
     var password: MutableLiveData<String> = MutableLiveData()
     lateinit var mAuth : FirebaseAuth
     lateinit var firebaseUser : FirebaseUser
+    var isSuccesfulUser : Boolean = false
 
     fun getUser(): MutableLiveData<User> {
         return userMutableLiveData
@@ -29,18 +31,18 @@ class RegisterViewModel : ViewModel() {
     }
 
     fun isUserCorrect(): Boolean {
-        return false
+        return isSuccesfulUser
     }
 
-    private fun checkUser (){
+    private fun checkUser () {
 
-        this.mAuth.createUserWithEmailAndPassword(nickname.value.toString(), password.value.toString()).addOnCompleteListener { task: Task<AuthResult> ->
-            if (task.isSuccessful) {
-                Log.e("succesful",nickname.value.toString())
-            } else {
-                Log.e("hata",nickname.value.toString())
-            }
+        mAuth = FirebaseAuth.getInstance()
+        this.mAuth.createUserWithEmailAndPassword(nickname.value.toString()
+            , password.value.toString()).addOnCompleteListener { task: Task<AuthResult> ->
+            isSuccesfulUser = task.isSuccessful
         }
+
+
 
     }
 

@@ -5,5 +5,28 @@
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.cardmatchinggame.ui.register.RegisterFragment"
-        android:label="RegisterFragment" />
+        android:label="RegisterFragment" >
+        <action
+            android:id="@+id/action_registerFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.cardmatchinggame.ui.home.MainFragment"
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_playgroundFragment"
+            app:destination="@id/playgroundFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_leadersFragment"
+            app:destination="@id/leadersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playgroundFragment"
+        android:name="com.example.cardmatchinggame.ui.playground.PlaygroundFragment"
+        android:label="PlaygroundFragment" />
+    <fragment
+        android:id="@+id/leadersFragment"
+        android:name="com.example.cardmatchinggame.ui.leaders.LeadersFragment"
+        android:label="LeadersFragment" />
 </navigation>

@@ -38,7 +38,9 @@ class RegisterFragment : Fragment() {
 
     private fun initUserLiveData() {
         registerViewModel.getUser().observe(viewLifecycleOwner, Observer {
-
+           if (registerViewModel.isUserCorrect()){
+               // intent here
+           }
 
         })
     }
