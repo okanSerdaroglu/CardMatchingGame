@@ -6,8 +6,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cardmatchinggame.databinding.AdapterImagesBinding
 import com.example.cardmatchinggame.model.Box
+import com.example.cardmatchinggame.viewmodel.ItemImageViewModel
 
-class ImagesAdapter : RecyclerView.Adapter<ImagesViewHolder>(),IBoxSelected {
+class ImagesAdapter (itemImageViewModelList : ArrayList<ItemImageViewModel>)
+    : RecyclerView.Adapter<ImagesViewHolder>(),IBoxSelected {
 
     lateinit var binding: AdapterImagesBinding
 

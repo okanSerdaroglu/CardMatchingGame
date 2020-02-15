@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.cardmatchinggame.base.BaseFragment
 import com.example.cardmatchinggame.databinding.FragmentPlaygroundBinding
+import com.example.cardmatchinggame.helper.PlayGroundFragmentUtils
 import com.example.cardmatchinggame.viewmodel.PlaygroundViewModel
 
 class PlaygroundFragment : BaseFragment<FragmentPlaygroundBinding>() {
@@ -15,9 +16,10 @@ class PlaygroundFragment : BaseFragment<FragmentPlaygroundBinding>() {
     override fun onBind(binding : ViewDataBinding) {
         this.binding = binding as FragmentPlaygroundBinding
         playgroundViewModel = ViewModelProvider(this)[PlaygroundViewModel::class.java]
+        PlayGroundFragmentUtils.getPlayGroundViewModel(playgroundViewModel, 0)
         binding.lifecycleOwner = this
         binding.playgroundViewModel = playgroundViewModel
-        playgroundViewModel.startTimer()
+        //playgroundViewModel.startTimer()
         observeViewModel()
     }
 
