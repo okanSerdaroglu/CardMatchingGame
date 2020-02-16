@@ -1,53 +1,38 @@
 package com.example.cardmatchinggame.viewmodel
 
-import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cardmatchinggame.model.User
-import com.example.cardmatchinggame.ui.register.RegisterFragment
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.*
 
 class RegisterViewModel : ViewModel() {
-    private val userMutableLiveData: MutableLiveData<User> = MutableLiveData()
 
-    var nickname: MutableLiveData<String> = MutableLiveData()
-    var password: MutableLiveData<String> = MutableLiveData()
-    lateinit var mAuth : FirebaseAuth
-    lateinit var firebaseUser : FirebaseUser
-    var isSuccesfulUser : Boolean = false
+    lateinit var user: User
 
-    fun getUser(): MutableLiveData<User> {
-        return userMutableLiveData
+    var nickname = String()
+    var password = String()
+
+    var isSuccessfulUser: MutableLiveData<Boolean> = MutableLiveData(false)
+
+    fun onClickRegister(view: View) {
+        checkUser(view)
     }
 
-    fun onClick(view : View) {
-
-        userMutableLiveData.value = User(nickname.value.toString(), password.value.toString())
-        checkUser()
-    }
-
-    fun isUserCorrect(): Boolean {
-        return isSuccesfulUser
-    }
-
-    private fun checkUser () {
-
-        mAuth = FirebaseAuth.getInstance()
-        this.mAuth.createUserWithEmailAndPassword(nickname.value.toString()
-            , password.value.toString()).addOnCompleteListener { task: Task<AuthResult> ->
-            isSuccesfulUser = task.isSuccessful
-        }
-
-
-
+    private fun checkUser(view: View) {
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(nickname, password)
+            .addOnSuccessListener {
+                user = User(nickname, "")
+                isSuccessfulUser.value = true
+            }.addOnFailureListener {
+                if ((it as FirebaseAuthUserCollisionException).errorCode == "ERROR_EMAIL_ALREADY_IN_USE") {
+                    user = User(nickname, "")
+                    isSuccessfulUser.value = true
+                } else {
+                    Toast.makeText(view.context, it.message, Toast.LENGTH_LONG).show()
+                }
+            }
     }
 
 }
-
-
-
-

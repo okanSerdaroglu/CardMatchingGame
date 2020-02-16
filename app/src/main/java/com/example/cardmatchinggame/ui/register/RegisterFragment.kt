@@ -1,47 +1,40 @@
 package com.example.cardmatchinggame.ui.register
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.example.cardmatchinggame.R
+import com.example.cardmatchinggame.base.BaseFragment
 import com.example.cardmatchinggame.databinding.FragmentRegisterBinding
 import com.example.cardmatchinggame.viewmodel.RegisterViewModel
 
-class RegisterFragment : Fragment() {
+class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
 
     lateinit var registerViewModel: RegisterViewModel
 
     lateinit var binding: FragmentRegisterBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_register, container, false)
-        binding.lifecycleOwner = this
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onBind(binding: ViewDataBinding) {
+        this.binding = binding as FragmentRegisterBinding
         registerViewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
+        binding.lifecycleOwner = this
         initUserLiveData()
         binding.registerViewModel = registerViewModel
+    }
 
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_register
     }
 
     private fun initUserLiveData() {
-        registerViewModel.getUser().observe(viewLifecycleOwner, Observer {
-           if (registerViewModel.isUserCorrect()){
-               // intent here
-           }
-
+        registerViewModel.isSuccessfulUser.observe(viewLifecycleOwner, Observer {
+            if (registerViewModel.isSuccessfulUser.value!!) {
+                val action = RegisterFragmentDirections.actionRegisterFragmentToMainFragment().also {
+                    it.user = registerViewModel.user
+                }
+                findNavController(this).navigate(action)
+            }
         })
     }
 

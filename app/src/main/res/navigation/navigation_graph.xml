@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation_graph.xml"
-    app:startDestination="@id/playgroundFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_graph.xml"
+    app:startDestination="@id/splashFragment">
+
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.cardmatchinggame.ui.register.RegisterFragment"
@@ -20,13 +22,34 @@
         <action
             android:id="@+id/action_mainFragment_to_leadersFragment"
             app:destination="@id/leadersFragment" />
+        <argument
+            android:name="user"
+            android:defaultValue="@null"
+            app:argType="com.example.cardmatchinggame.model.User"
+            app:nullable="true"/>
     </fragment>
     <fragment
         android:id="@+id/playgroundFragment"
         android:name="com.example.cardmatchinggame.ui.playground.PlaygroundFragment"
-        android:label="PlaygroundFragment" />
+        android:label="PlaygroundFragment" >
+        <action
+            android:id="@+id/action_playgroundFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
     <fragment
         android:id="@+id/leadersFragment"
         android:name="com.example.cardmatchinggame.ui.leaders.LeadersFragment"
         android:label="LeadersFragment" />
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.cardmatchinggame.ui.home.SplashFragment"
+        android:label="SplashFragment" >
+        <action
+            android:id="@+id/action_splashFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
 </navigation>
