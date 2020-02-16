@@ -13,10 +13,10 @@ import com.example.cardmatchinggame.viewmodel.PlaygroundViewModel
 class PlaygroundFragment : BaseFragment<FragmentPlaygroundBinding>() {
 
     lateinit var binding: FragmentPlaygroundBinding
-    lateinit var playgroundViewModel : PlaygroundViewModel
+    lateinit var playgroundViewModel: PlaygroundViewModel
     var level = 0
 
-    override fun onBind(binding : ViewDataBinding) {
+    override fun onBind(binding: ViewDataBinding) {
         this.binding = binding as FragmentPlaygroundBinding
         playgroundViewModel = ViewModelProvider(this)[PlaygroundViewModel::class.java]
         PlayGroundFragmentUtils.getPlayGroundViewModel(playgroundViewModel, level)
@@ -37,10 +37,12 @@ class PlaygroundFragment : BaseFragment<FragmentPlaygroundBinding>() {
 
     private fun observeViewModel() {
         playgroundViewModel.isTimeFinished.observe(this, Observer {
-            if(playgroundViewModel.isTimeFinished.value == true) {
+            if (playgroundViewModel.isTimeFinished.value == true) {
                 if (playgroundViewModel.isLevelSuccess.value == true) {
-                    level ++
+                    level++
                     PlayGroundFragmentUtils.getPlayGroundViewModel(playgroundViewModel, level)
+                    binding.lifecycleOwner = this
+                    binding.playgroundViewModel = playgroundViewModel
                 }
             }
         })

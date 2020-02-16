@@ -1,4 +1,5 @@
 package com.example.cardmatchinggame.helper
+
 import com.example.cardmatchinggame.R
 import com.example.cardmatchinggame.adapter.ImageListAdapter
 import com.example.cardmatchinggame.helper.interfaces.IBoxSelected
@@ -12,12 +13,12 @@ import com.example.cardmatchinggame.viewmodel.PlaygroundViewModel
 class PlayGroundFragmentUtils {
 
     companion object {
-        private val selectedBoxList=ArrayList<SelectedBox>()
+        private val selectedBoxList = ArrayList<SelectedBox>()
         var listSize = 0
 
-        fun getPlayGroundViewModel(viewModel : PlaygroundViewModel, levelID: Int) {
+        fun getPlayGroundViewModel(viewModel: PlaygroundViewModel, levelID: Int) {
             viewModel.imageListAdapter = getImageListAdapter(levelID)
-            if (levelID != 0){
+            if (levelID != 0) {
                 viewModel.imageListAdapter.notifyDataSetChanged()
             }
             viewModel.stepCount.value = viewModel.imageListAdapter.itemCount / 2
@@ -29,25 +30,24 @@ class PlayGroundFragmentUtils {
         }
 
 
-        private fun updateGameLevel (levelID: Int){
+        private fun checkSelectedBox(
+            adapter: ImageListAdapter,
+            viewModel: PlaygroundViewModel,
+            selectedBox: ItemImageViewModel
+        ) {
 
-        }
-
-        private fun checkSelectedBox(adapter : ImageListAdapter,
-                                     viewModel: PlaygroundViewModel,
-                                     selectedBox: ItemImageViewModel) {
-
-            var currentSelectedBox = SelectedBox(selectedBox.box,selectedBox.position,selectedBox)
+            val currentSelectedBox = SelectedBox(selectedBox.box, selectedBox.position, selectedBox)
 
             selectedBoxList.add(currentSelectedBox)
-            if (selectedBoxList.size ==2){
+            if (selectedBoxList.size == 2) {
                 if (selectedBoxList[0].box.id
-                    != selectedBoxList[1].box.id) {
+                    != selectedBoxList[1].box.id
+                ) {
                     selectedBoxList[0].itemImageViewModel.isBoxTurned.value = false
                     selectedBoxList[1].itemImageViewModel.isBoxTurned.value = false
                 } else {
                     listSize += 2
-                    if (listSize == adapter.itemImageViewModelList.size){
+                    if (listSize == adapter.itemImageViewModelList.size) {
                         viewModel.isLevelSuccess.value = true
                     }
                 }
@@ -57,30 +57,6 @@ class PlayGroundFragmentUtils {
             } else {
                 adapter.notifyItemChanged(selectedBox.position)
             }
-
-            //Log.d("position", selectedBox.position.toString())
-            //adapter.notifyItemChanged(selectedBox.position) // seçileni update
-            /*if (viewModel.selectedBox.value == null) {
-                // ilk seçim
-                viewModel.selectedBox.value = selectedBox
-            } else {
-                if ((viewModel.selectedBox.value)!!.box.id == selectedBox.box.id) {
-                    // başarılı - sadece son seçileni update et ilk seçileni null yap
-                    viewModel.selectedBox.value = null
-                    viewModel.stepCount.value!!.minus(1)
-                } else {
-                    // başarısız
-                    //Thread.sleep(3000)
-
-                    // önce turn leri false yap ikisininde
-                    (viewModel.selectedBox.value)!!.isBoxTurned.value = false // öncekini ters çevir
-                    selectedBox.isBoxTurned.value = false // yeni seçileni ters çevirdim
-
-                    adapter.notifyItemChanged(viewModel.selectedBox.value!!.position)
-                    adapter.notifyItemChanged(selectedBox.position)
-
-                }
-            }*/
         }
 
         private fun getImageListAdapter(levelID: Int): ImageListAdapter {
@@ -93,7 +69,7 @@ class PlayGroundFragmentUtils {
             val itemImageViewModelList = ArrayList<ItemImageViewModel>()
             val level = prepareLevelList(imageList)[levelID]
             for ((position, box) in level.boxList.withIndex()) {
-                itemImageViewModelList.add(ItemImageViewModel(box,position))
+                itemImageViewModelList.add(ItemImageViewModel(box, position))
             }
 
             return itemImageViewModelList
