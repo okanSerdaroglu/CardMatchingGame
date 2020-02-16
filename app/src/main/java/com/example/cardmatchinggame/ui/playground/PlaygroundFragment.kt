@@ -14,11 +14,12 @@ class PlaygroundFragment : BaseFragment<FragmentPlaygroundBinding>() {
 
     lateinit var binding: FragmentPlaygroundBinding
     lateinit var playgroundViewModel : PlaygroundViewModel
+    var level = 0
 
     override fun onBind(binding : ViewDataBinding) {
         this.binding = binding as FragmentPlaygroundBinding
         playgroundViewModel = ViewModelProvider(this)[PlaygroundViewModel::class.java]
-        PlayGroundFragmentUtils.getPlayGroundViewModel(playgroundViewModel, 3)
+        PlayGroundFragmentUtils.getPlayGroundViewModel(playgroundViewModel, level)
         binding.lifecycleOwner = this
         binding.playgroundViewModel = playgroundViewModel
         playgroundViewModel.startTimer()
@@ -38,9 +39,8 @@ class PlaygroundFragment : BaseFragment<FragmentPlaygroundBinding>() {
         playgroundViewModel.isTimeFinished.observe(this, Observer {
             if(playgroundViewModel.isTimeFinished.value == true) {
                 if (playgroundViewModel.isLevelSuccess.value == true) {
-                    //level yükselt
-                } else {
-                    // level sabit
+                    level ++
+                    PlayGroundFragmentUtils.getPlayGroundViewModel(playgroundViewModel, level)
                 }
             }
         })

@@ -4,7 +4,6 @@ import android.os.CountDownTimer
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cardmatchinggame.adapter.ImageListAdapter
-import com.example.cardmatchinggame.helper.interfaces.IBoxSelected
 
 class PlaygroundViewModel : ViewModel() {
 

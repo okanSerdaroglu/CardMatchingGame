@@ -1,5 +1,4 @@
 package com.example.cardmatchinggame.helper
-import android.util.Log
 import com.example.cardmatchinggame.R
 import com.example.cardmatchinggame.adapter.ImageListAdapter
 import com.example.cardmatchinggame.helper.interfaces.IBoxSelected
@@ -14,15 +13,24 @@ class PlayGroundFragmentUtils {
 
     companion object {
         private val selectedBoxList=ArrayList<SelectedBox>()
+        var listSize = 0
 
         fun getPlayGroundViewModel(viewModel : PlaygroundViewModel, levelID: Int) {
             viewModel.imageListAdapter = getImageListAdapter(levelID)
+            if (levelID != 0){
+                viewModel.imageListAdapter.notifyDataSetChanged()
+            }
             viewModel.stepCount.value = viewModel.imageListAdapter.itemCount / 2
             viewModel.imageListAdapter.iBoxSelected = object : IBoxSelected {
                 override fun onBoxSelected(itemImageViewModel: ItemImageViewModel) {
                     checkSelectedBox(viewModel.imageListAdapter, viewModel, itemImageViewModel)
                 }
             }
+        }
+
+
+        private fun updateGameLevel (levelID: Int){
+
         }
 
         private fun checkSelectedBox(adapter : ImageListAdapter,
@@ -37,6 +45,11 @@ class PlayGroundFragmentUtils {
                     != selectedBoxList[1].box.id) {
                     selectedBoxList[0].itemImageViewModel.isBoxTurned.value = false
                     selectedBoxList[1].itemImageViewModel.isBoxTurned.value = false
+                } else {
+                    listSize += 2
+                    if (listSize == adapter.itemImageViewModelList.size){
+                        viewModel.isLevelSuccess.value = true
+                    }
                 }
                 adapter.notifyItemChanged(selectedBoxList[0].position)
                 adapter.notifyItemChanged(selectedBoxList[1].position)
