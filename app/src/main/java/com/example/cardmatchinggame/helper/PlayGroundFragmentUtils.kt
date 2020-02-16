@@ -1,12 +1,11 @@
 package com.example.cardmatchinggame.helper
-
-import android.os.Handler
 import android.util.Log
 import com.example.cardmatchinggame.R
 import com.example.cardmatchinggame.adapter.ImageListAdapter
 import com.example.cardmatchinggame.helper.interfaces.IBoxSelected
 import com.example.cardmatchinggame.model.Box
 import com.example.cardmatchinggame.model.Level
+import com.example.cardmatchinggame.model.SelectedBox
 import com.example.cardmatchinggame.viewmodel.ItemImageViewModel
 import com.example.cardmatchinggame.viewmodel.PlaygroundViewModel
 
@@ -14,6 +13,8 @@ import com.example.cardmatchinggame.viewmodel.PlaygroundViewModel
 class PlayGroundFragmentUtils {
 
     companion object {
+        private val selectedBoxList=ArrayList<SelectedBox>()
+
         fun getPlayGroundViewModel(viewModel : PlaygroundViewModel, levelID: Int) {
             viewModel.imageListAdapter = getImageListAdapter(levelID)
             viewModel.stepCount.value = viewModel.imageListAdapter.itemCount / 2
@@ -24,10 +25,29 @@ class PlayGroundFragmentUtils {
             }
         }
 
-        private fun checkSelectedBox(adapter : ImageListAdapter, viewModel: PlaygroundViewModel, selectedBox: ItemImageViewModel) {
-            Log.d("position", selectedBox.position.toString())
-            /*adapter.notifyItemChanged(selectedBox.position) // seçileni update
-            if (viewModel.selectedBox.value == null) {
+        private fun checkSelectedBox(adapter : ImageListAdapter,
+                                     viewModel: PlaygroundViewModel,
+                                     selectedBox: ItemImageViewModel) {
+
+            var currentSelectedBox = SelectedBox(selectedBox.box,selectedBox.position,selectedBox)
+
+            selectedBoxList.add(currentSelectedBox)
+            if (selectedBoxList.size ==2){
+                if (selectedBoxList[0].box.id
+                    != selectedBoxList[1].box.id) {
+                    selectedBoxList[0].itemImageViewModel.isBoxTurned.value = false
+                    selectedBoxList[1].itemImageViewModel.isBoxTurned.value = false
+                }
+                adapter.notifyItemChanged(selectedBoxList[0].position)
+                adapter.notifyItemChanged(selectedBoxList[1].position)
+                selectedBoxList.clear()
+            } else {
+                adapter.notifyItemChanged(selectedBox.position)
+            }
+
+            //Log.d("position", selectedBox.position.toString())
+            //adapter.notifyItemChanged(selectedBox.position) // seçileni update
+            /*if (viewModel.selectedBox.value == null) {
                 // ilk seçim
                 viewModel.selectedBox.value = selectedBox
             } else {

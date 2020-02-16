@@ -10,7 +10,13 @@ class ItemImageViewModel(var box : Box,var position : Int) : ViewModel() {
     lateinit var iBoxSelected : IBoxSelected
 
     fun changeState() {
-        isBoxTurned.value = isBoxTurned.value != true
+        if (isBoxTurned.value == true){
+            return
+        } else {
+            isBoxTurned.value = true
+        }
+
+        //isBoxTurned.value = isBoxTurned.value != true
         iBoxSelected.onBoxSelected(this)
     }
 

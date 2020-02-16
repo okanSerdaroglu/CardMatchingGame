@@ -21,7 +21,7 @@ class PlaygroundFragment : BaseFragment<FragmentPlaygroundBinding>() {
         PlayGroundFragmentUtils.getPlayGroundViewModel(playgroundViewModel, 3)
         binding.lifecycleOwner = this
         binding.playgroundViewModel = playgroundViewModel
-        //playgroundViewModel.startTimer()
+        playgroundViewModel.startTimer()
         observeViewModel()
         observePlayFinished()
     }

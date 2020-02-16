@@ -14,7 +14,7 @@ class BindingAdapter {
             if (itemImageViewModel.isBoxTurned.value!!) {
                 imageView.setImageResource(itemImageViewModel.box.image)
             } else {
-                imageView.setImageResource(R.drawable.ic_person)
+                imageView.setImageResource(R.color.color_grey)
             }
         }
 
